@@ -7,13 +7,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/privet', async function(req, res, next) {
-  console.log('PRIVET EBLISHE');
+  console.log('PRIVET');
   res.header('Access-Control-Allow-Origin', '*')
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  const result = await axios.get('http://dummy.restapiexample.com/api/v1/employees'); 
-  console.log("result", result.data);
-  res.send('darowa eblishe');
+  axios.get('http://dummy.restapiexample.com/api/v1/employees')
+  .then(result => res.send(result.data))
+  .catch(error => console.log(error))
 })
 
 module.exports = router;
